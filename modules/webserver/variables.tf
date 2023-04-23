@@ -3,71 +3,93 @@ variable "vpc_id" {
     description = "VPC ID"
 }
 
-variable "cidr_block_1" {
-    type = string
-    description = "Subnet CIDR Block"
+variable "subnets" {
+type = map(object({
+
+cidr = string
+tags = map(string)
+
+}))
+
+default = {
+  "one" = {
+    cidr = "10.0.1.0/24"
+    tags = {
+     "Name" = "Internal-Subnet-1"
+    }
+
+  }
+
+ "two" = {
+    cidr = "10.0.2.0/24"
+    tags = {
+     "Name" = "Internal-Subnet-2"
+    }
+
+  }
+
+ "three" = {
+    cidr = "10.0.3.0/24"
+    tags = {
+     "Name" = "External-Subnet-1"
+    }
+
+  }
+
+ "four" = {
+    cidr = "10.0.4.0/24"
+    tags = {
+     "Name" = "External-Subnet-2"
+    }
+
+  }
+}
 }
 
-variable "cidr_block_2" {
-    type = string
-    description = "Subnet CIDR Block"
-}
+variable "instance"{
+type = map(object({
+ami = string
+instance_type = string
+subnet = string
+tags = map(string)
+}))
 
-variable "cidr_block_3" {
-    type = string
-    description = "Subnet CIDR Block"
-}
+default = {
+  "one" = {
+    ami = "ami-06e46074ae430fba6"
+    instance_type = "t2.micro"
+    subnet = "one"
+    tags = {
 
-variable "cidr_block_4" {
-    type = string
-    description = "Subnet CIDR Block"
-}
+      "Name" = "Internal-Server-1"
+    }
+  }
+  "two" = {
+    ami = "ami-06e46074ae430fba6"
+    instance_type = "t2.micro"
+    subnet = "two"
+    tags = {
 
-variable "env-prefix_1" {
-    type = string
-    description = "Environment"
-}
+      "Name" = "Internal-Server-2"
+    }
+  }
+    "three" = {
+    ami = "ami-06e46074ae430fba6"
+    instance_type = "t2.micro"
+    subnet = "three"
+    tags = {
 
-variable "env-prefix_2" {
-    type = string
-    description = "Environment"
-}
+      "Name" = "External-Server-1"
+    }
+  }
+    "four" = {
+    ami = "ami-06e46074ae430fba6"
+    instance_type = "t2.micro"
+    subnet = "four"
+    tags = {
 
-variable "env-prefix_3" {
-    type = string
-    description = "Environment"
+      "Name" = "External-Server-2"
+    }
+  }
 }
-
-variable "env-prefix_4" {
-    type = string
-    description = "Environment"
-}
-variable "web-server-name_1" {
-  type = string
-  description = "Name of the webserver"
-}
-
-variable "web-server-name_2" {
-  type = string
-  description = "Name of the webserver"
-}
-
-variable "web-server-name_3" {
-  type = string
-  description = "Name of the webserver"
-}
-
-variable "web-server-name_4" {
-  type = string
-  description = "Name of the webserver"
-}
-
-variable "ami" {
-type = string
-description = "AMI ID"
-}
-
-variable "instance_type" {
-  type = string
-  description = "Instance type"
 }
