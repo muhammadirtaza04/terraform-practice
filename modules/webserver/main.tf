@@ -4,23 +4,9 @@ required_version = ">=1.3.9"
 
 }
 
-#  Creating VPC
-resource "aws_vpc" "vpc"{
-cidr_block = var.cidr_block
-}
-
-resource "aws_subnet" "subnets"{
-vpc_id = aws_vpc.vpc
-
-for_each = var.subnets
-
-cidr_block = each.value["cidr"]
-tags = each.value["tags"]
-}
-
 locals {
   subnet_ids = {
-    for name, subnet in var.subnets : name => aws_subnet.subnets[name].id
+    for name, subnet in module.networking.var.subnets : name => module.networking.aws_subnet.subnets[name].id
   }
 }
 

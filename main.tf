@@ -12,8 +12,17 @@ region = "us-east-1"
 
 }
 
-module "webserver" {
 
+module "networking" {
+
+source = "./modules/network"
+}
+
+module "instance_profile" {
 source = "./modules/webserver"
 
+}
+
+module "s3" {
+  source = "./modules/bucket"
 }
