@@ -1,6 +1,6 @@
-variable "vpc_id" {
+variable "cidr_block" {
     type = string
-    description = "VPC ID"
+    default = "10.0.0.0/16"
 }
 
 variable "subnets" {
