@@ -14,3 +14,6 @@ variable "tags"{
     type = string
     default = null
 }
+variable "sg-id" {
+  
+}
