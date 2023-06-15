@@ -35,3 +35,13 @@ for_each = toset(var.public_subnets)
 cidr_block = each.value
 
 }
+
+output "vpc_private_subnets" {
+    
+    value = { for subnet in aws_subnet.aws_private-subnets : subnet.id => subnet.cidr_block }
+}
+
+output "vpc_public_subnets" {
+    
+    value = { for subnet in aws_subnet.aws_public-subnets : subnet.id => subnet.cidr_block }
+}
