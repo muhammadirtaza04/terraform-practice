@@ -18,8 +18,10 @@ resource "aws_instance" "ec2_instance" {
   count = 2
   subnet_id = random_shuffle.subnets.result[0]
   associate_public_ip_address = true
+  vpc_security_group_ids = [var.sg-id]
+  
+
   tags = {
     Name = var.tags
   }
 }
-
