@@ -13,7 +13,6 @@ region = "us-east-1"
 }
 
 
-
 module "vpc" {
 
 source = "./modules/network"
@@ -31,6 +30,7 @@ module "private-server"{
   instanse_size = "t2.micro"
   subnets = keys(module.vpc.vpc_private_subnets)
   tags = "Private-Server"
+  sg-id = module.aws-security-group.sg-id
 }
 
 module "public-server"{
@@ -39,6 +39,7 @@ module "public-server"{
   instanse_size = "t2.micro"
   subnets = keys(module.vpc.vpc_public_subnets)
   tags = "Public-Server"
+  sg-id = module.aws-security-group.sg-id
 }
 
 output "created_resources" {
@@ -48,4 +49,12 @@ output "created_resources" {
    module.vpc.vpc_public_subnets,
 
   ]
+}
+
+module "aws-security-group" {
+  source = "./modules/security-group"
+  sg_name = "my-app-sg"
+  vpc-id = module.vpc.vpc_id
+  my-ip = "172.16.32.99/32"
+
 }
