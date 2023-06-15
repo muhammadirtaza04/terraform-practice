@@ -17,7 +17,7 @@ resource "aws_instance" "ec2_instance" {
   instance_type = var.instanse_size
   count = 2
   subnet_id = random_shuffle.subnets.result[0]
-
+  associate_public_ip_address = true
   tags = {
     Name = var.tags
   }
