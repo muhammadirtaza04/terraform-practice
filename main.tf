@@ -37,13 +37,6 @@ module "public-server"{
  sg-id = module.aws-security-group.sg-id
 }
 
-output "created_resources" {
-  value = [   
-   module.vpc.vpc_private_subnets,
-   module.vpc.vpc_public_subnets,
-  ]
-}
-
 module "aws-security-group" {
   source = "./modules/security-group"
   sg_name = "my-app-sg"
