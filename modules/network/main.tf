@@ -1,52 +1,22 @@
 terraform {
-
 required_version = ">=1.3.9"
-
 }
 
 #  Creating a VPC
-
 resource "aws_vpc" "vpc" {
-    
-cidr_block = var.cidr_block
-
+ cidr_block = var.cidr_block
 }
 
 # Create Private Subnets
-
 resource "aws_subnet" "aws_private-subnets" {
-
-vpc_id = aws_vpc.vpc.id
-
-for_each = toset(var.private_subnets)
-
-cidr_block = each.value
-
+ vpc_id = aws_vpc.vpc.id
+ for_each = toset(var.private_subnets)
+ cidr_block = each.value
 }
 
 # Create Public Subnets
-
 resource "aws_subnet" "aws_public-subnets" {
-
-vpc_id = aws_vpc.vpc.id
-
-for_each = toset(var.public_subnets)
-
-cidr_block = each.value
-
-}
-
-output "vpc_id" {
-  value = aws_vpc.vpc.id
-
-}
-
-output "vpc_private_subnets" {
-    
-    value = { for subnet in aws_subnet.aws_private-subnets : subnet.id => subnet.cidr_block }
-}
-
-output "vpc_public_subnets" {
-    
-    value = { for subnet in aws_subnet.aws_public-subnets : subnet.id => subnet.cidr_block }
+ vpc_id = aws_vpc.vpc.id
+ for_each = toset(var.public_subnets)
+ cidr_block = each.value
 }
