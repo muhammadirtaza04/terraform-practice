@@ -61,6 +61,6 @@ module "auto-scaling" {
 
 module "s3-bucket" {
   source = "./modules/s3-bucket"  
-  bucket_name = "my-tf-test-bucket"
+  bucket_name = "me-tf-test-bucket"
   tags = "Production_Bucket"
 }
