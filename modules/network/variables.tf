@@ -6,3 +6,5 @@ variable "private_subnets" {
 variable "public_subnets" {
  type = list(string)
 }
+variable "tags_private_subnet" {}
+variable "tags_public_subnet" {}
