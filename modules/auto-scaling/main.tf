@@ -14,17 +14,20 @@ resource "aws_launch_configuration" "ec2" {
 }
 
 resource "aws_autoscaling_group" "ec2-private" {
-  min_size             = 1
-  max_size             = 2
-  desired_capacity     = 1
+  min_size             = var.min_size
+  max_size             = var.max_size
+  desired_capacity     = var.capacity
   launch_configuration = aws_launch_configuration.ec2.name
   vpc_zone_identifier  = var.vpc_private_subnets
 }
 
-resource "aws_autoscaling_group" "ec2-public" {
+/*
+shpuld be one suto scaling group.
+call this mudoule 
+
+Pass these to vaiable.
   min_size             = 1
   max_size             = 2
   desired_capacity     = 1
-  launch_configuration = aws_launch_configuration.ec2.name
-  vpc_zone_identifier  = var.vpc_public_subnets
-}
+
+*/

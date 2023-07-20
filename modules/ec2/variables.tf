@@ -15,3 +15,7 @@ variable "instance_count" {}
 variable "subnet-id" { 
 
 }
+variable "instance_profile" {
+  type = string
+  default = null
+}
