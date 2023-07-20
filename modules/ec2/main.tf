@@ -12,11 +12,7 @@ resource "aws_instance" "ec2_instance" {
   subnet_id = var.subnet-id[count.index]
   associate_public_ip_address = true
   vpc_security_group_ids = [var.sg-id]
-  user_data = <<EOF
-		#! /bin/bash
-        sudo apt-get update
-		    sudo apt install jq
-	EOF
+  user_data = var.user_data
 
   tags = {
     Name = var.tags

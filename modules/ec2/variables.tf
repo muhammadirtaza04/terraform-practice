@@ -19,3 +19,6 @@ variable "instance_profile" {
   type = string
   default = null
 }
+variable "user_data" {
+  
+}

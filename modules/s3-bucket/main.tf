@@ -8,3 +8,10 @@ resource "aws_s3_bucket" "my-bucket" {
     Name   = var.tags
   }
 }
+
+resource "aws_s3_object" "object" {
+  bucket = var.bucket_name
+  key    = "user-data.sh"
+  source = "path/to/file"
+  etag = filemd5("user-data.sh")
+}

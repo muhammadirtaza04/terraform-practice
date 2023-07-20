@@ -41,6 +41,7 @@ module "private-server"{
   subnet-id = module.vpc.private_subnets_id
   tags = "Private-Server"
   sg-id = module.aws-security-group.sgrp-id
+  user_data = module.s3-bucket.bucket_name
 }
 
 module "public-server"{
@@ -51,6 +52,7 @@ module "public-server"{
   subnet-id = module.vpc.public_subnets_id
   tags = "Public-Server"
   sg-id = module.aws-security-group.sgrp-id
+  user_data = module.s3-bucket.bucket_name
 }
 
 module "aws-security-group" {
@@ -111,7 +113,5 @@ module "iam-role-policy"{
   })
 }
 
-//module "auto-scaling-2"
 
-//- use for_each inside module.
 
