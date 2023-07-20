@@ -6,7 +6,7 @@ resource "aws_launch_configuration" "ec2" {
   name_prefix     = var.asg_name
   image_id        = var.image_id
   instance_type   = var.instanse_size
-  #user_data       = file("user-data.sh")
+  user_data       = var.user_data
 
   lifecycle {
     create_before_destroy = true

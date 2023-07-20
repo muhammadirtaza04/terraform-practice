@@ -80,6 +80,7 @@ module "s3-bucket" {
   source = "./modules/s3-bucket"  
   bucket_name = "me-tf-test-bucket2"
   tags = "Production_Bucket"
+  content = file("./user-data/user-data.sh")
 }
 
 module "iam-role-policy"{

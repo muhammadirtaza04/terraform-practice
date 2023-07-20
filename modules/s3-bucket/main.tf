@@ -12,6 +12,6 @@ resource "aws_s3_bucket" "my-bucket" {
 resource "aws_s3_object" "object" {
   bucket = var.bucket_name
   key    = "user-data.sh"
-  source = "path/to/file"
-  etag = filemd5("user-data.sh")
+  content = var.content
+  etag = md5(var.content)
 }
