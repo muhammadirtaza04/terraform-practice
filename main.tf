@@ -74,6 +74,7 @@ module "auto-scaling-1" {
   tags_private = "Private_Server_ASG"
   vpc_public_subnets = module.vpc.public_subnets_id
   tags_public = "Public_Server_ASG"
+ // user_data = 
 }
 
 module "s3-bucket" {
