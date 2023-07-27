@@ -21,4 +21,3 @@ variable "igw" {}
 variable "nat_gateway_type" {}
 variable "nat_gatway_public_subnet_1_id" {}
 variable "nat_gatway_public_subnet_2_id" {}
-//variable "public_subnets_id" {}

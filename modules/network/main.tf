@@ -87,10 +87,3 @@ resource "aws_nat_gateway" "nat_gtw_pub_1" {
   subnet_id         = var.nat_gatway_public_subnet_1_id
   allocation_id = aws_eip.my_eip.id
 }
-
-# # Creating NAT Gateway For Public Subnet 2
-# resource "aws_nat_gateway" "nat_gtw_pub_2" {
-#   connectivity_type = var.nat_gateway_type
-#   subnet_id         = var.nat_gatway_public_subnet_2_id
-#   allocation_id = aws_eip.my_eip.id
-# }

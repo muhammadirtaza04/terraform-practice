@@ -74,12 +74,12 @@ module "auto-scaling-1" {
   tags_private = "Private_Server_ASG"
   vpc_public_subnets = module.vpc.public_subnets_id
   tags_public = "Public_Server_ASG"
- // user_data = 
+  user_data = module.s3-bucket.bucket_name
 }
 
 module "s3-bucket" {
   source = "./modules/s3-bucket"  
-  bucket_name = "me-tf-test-bucket2"
+  bucket_name = "me-tf-test-bucket3"
   tags = "Production_Bucket"
   content = file("./user-data/user-data.sh")
 }

@@ -19,5 +19,5 @@ variable "tags_public" {}
 variable "min_size" {}
 variable "max_size" {}
 variable "capacity" {}
-//variable "user_data" {}
+variable "user_data" {}
 
