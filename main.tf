@@ -41,7 +41,7 @@ module "private-server"{
   subnet-id = module.vpc.private_subnets_id
   tags = "Private-Server"
   sg-id = module.aws-security-group.sgrp-id
-  user_data = module.s3-bucket.bucket_name
+  user_data = module.s3-bucket.user_data
 }
 
 module "public-server"{
@@ -52,14 +52,14 @@ module "public-server"{
   subnet-id = module.vpc.public_subnets_id
   tags = "Public-Server"
   sg-id = module.aws-security-group.sgrp-id
-  user_data = module.s3-bucket.bucket_name
+  user_data = module.s3-bucket.user_data
 }
 
 module "aws-security-group" {
   source = "./modules/security-group"
   sg_name = "my-app-sg"
   vpc-id = module.vpc.vpc_id
-  my-ip = "172.16.32.99/32"
+  my-ip = "0.0.0.0/0"
 }
 
 module "auto-scaling-1" {
@@ -74,7 +74,7 @@ module "auto-scaling-1" {
   tags_private = "Private_Server_ASG"
   vpc_public_subnets = module.vpc.public_subnets_id
   tags_public = "Public_Server_ASG"
-  user_data = module.s3-bucket.bucket_name
+  user_data = module.s3-bucket.user_data
 }
 
 module "s3-bucket" {

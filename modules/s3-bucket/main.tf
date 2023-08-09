@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "my-bucket" {
 }
 
 resource "aws_s3_object" "object" {
-  bucket = var.bucket_name
+  bucket = aws_s3_bucket.my-bucket.bucket
   key    = "user-data.sh"
   content = var.content
   etag = md5(var.content)

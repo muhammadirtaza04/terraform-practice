@@ -34,8 +34,11 @@ resource "aws_route_table" "private_rtb" {
 }
 
 resource "aws_route_table_association" "private_subnets" {
-  for_each = toset([for subnet in aws_subnet.aws_private-subnets : subnet.id  ])
-  subnet_id      = each.key
+ # for_each = toset([for subnet in aws_subnet.aws_private-subnets : subnet.id  ])
+  
+  for_each = { for idx, subnet in aws_subnet.aws_private-subnets : idx => subnet }
+
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.private_rtb.id
 }
 
@@ -63,8 +66,8 @@ resource "aws_route_table" "public_rtb" {
 }
 
 resource "aws_route_table_association" "public_subnets" {
-  for_each = toset([for subnet in aws_subnet.aws_public-subnets : subnet.id  ])
-  subnet_id      = each.key
+  for_each = { for idx, subnet in aws_subnet.aws_public-subnets : idx => subnet }
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.public_rtb.id
 }
 
